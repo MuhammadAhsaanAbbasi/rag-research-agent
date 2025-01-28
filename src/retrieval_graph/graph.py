@@ -5,14 +5,15 @@ retrieval graph. It includes the main graph definition, state management,
 and key functions for processing & routing user queries, generating research plans to answer user questions,
 conducting research, and formulating responses.
 """
+# type: ignore
 
 from typing import Any, Literal, TypedDict, cast
 
-from langchain_core.messages import BaseMessage
+from langchain_core.messages import BaseMessage, HumanMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, START, StateGraph
 
-from retrieval_graph.configuration import AgentConfiguration
+from .configuration import AgentConfiguration
 from retrieval_graph.researcher_graph.graph import graph as researcher_graph
 from retrieval_graph.state import AgentState, InputState, Router
 from shared.utils import format_docs, load_chat_model
@@ -226,3 +227,6 @@ builder.add_edge("respond", END)
 # Compile into a graph object that you can invoke and deploy.
 graph = builder.compile()
 graph.name = "RetrievalGraph"
+input_message = HumanMessage(content="Research & tell me about AI, which AI skills are demanding right now")
+response = graph.invoke({"messages" : [input_message] })
+print(f'REsponse: {response}')

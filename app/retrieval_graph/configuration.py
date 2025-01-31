@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Annotated
 
-from retrieval_graph import prompts
-from shared.configuration import BaseConfiguration
+from app.retrieval_graph import prompts
+from app.shared.configuration import BaseConfiguration
 
 
 @dataclass(kw_only=True)

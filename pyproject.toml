@@ -3,11 +3,11 @@ name = "rag-research-graph"
 version = "0.0.1"
 description = "Starter template for making a custom RAG research agent graph in LangGraph."
 authors = [
-    { name = "M. Ahsaan Abbasi", email = "mahsaanabbasi@gmail.com" }
+    { name = "Vadym Barda", email = "19161700+vbarda@users.noreply.github.com" }
 ]
 license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.9,<3.13"
+requires-python = ">=3.9.0,<3.13"
 dependencies = [
     "langgraph>=0.2.6",
     "langchain-openai>=0.1.22",
@@ -26,46 +26,49 @@ dependencies = [
 dev = ["mypy>=1.11.1", "ruff>=0.6.1"]
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=73.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
 
-# [tool.setuptools]
-# packages = ["retrieval_graph", "index_graph", "shared"]
-# [tool.setuptools.package-dir]
-# "langgraph.templates.retrieval_graph" = "src/retrieval_graph"
-# "langgraph.templates.index_graph" = "src/index_graph"
-# "retrieval_graph" = "src/retrieval_graph"
-# "index_graph" = "src/index_graph"
-# "shared" = "src/shared"
+[tool.setuptools]
+packages = ["retrieval_graph", "index_graph", "shared"]
+[tool.setuptools.package-dir]
+"langgraph.templates.retrieval_graph" = "app/retrieval_graph"
+"langgraph.templates.index_graph" = "app/index_graph"
+"retrieval_graph" = "app/retrieval_graph"
+"index_graph" = "app/index_graph"
+"shared" = "app/shared"
 
 
-# [tool.setuptools.package-data]
-# "*" = ["py.typed"]
+[tool.setuptools.package-data]
+"*" = ["py.typed"]
 
-# [tool.ruff]
-# lint.select = [
-#     "E",    # pycodestyle
-#     "F",    # pyflakes
-#     "I",    # isort
-#     "D",    # pydocstyle
-#     "D401", # First line should be in imperative mood
-#     "T201",
-#     "UP",
-# ]
-# lint.ignore = [
-#     "UP006",
-#     "UP007",
-#     # We actually do want to import from typing_extensions
-#     "UP035",
-#     # Relax the convention by _not_ requiring documentation for every function parameter.
-#     "D417",
-#     "E501",
-# ]
-# [tool.ruff.lint.per-file-ignores]
-# "tests/*" = ["D", "UP"]
-# [tool.ruff.lint.pydocstyle]
-# convention = "google"
-# [tool.pytest.ini_options]
-# pythonpath = [
-#   "src"
-# ]
+[tool.ruff]
+lint.select = [
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "I",    # isort
+    "D",    # pydocstyle
+    "D401", # First line should be in imperative mood
+    "T201",
+    "UP",
+]
+lint.ignore = [
+    "UP006",
+    "UP007",
+    # We actually do want to import from typing_extensions
+    "UP035",
+    # Relax the convention by _not_ requiring documentation for every function parameter.
+    "D417",
+    "E501",
+]
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D", "UP"]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+

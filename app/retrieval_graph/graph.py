@@ -8,7 +8,7 @@ conducting research, and formulating responses.
 
 from typing import Any, Literal, TypedDict, cast
 
-from langchain_core.messages import BaseMessage, HumanMessage
+from langchain_core.messages import BaseMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, START, StateGraph
 
@@ -226,6 +226,3 @@ builder.add_edge("respond", END)
 # Compile into a graph object that you can invoke and deploy.
 graph = builder.compile()
 graph.name = "RetrievalGraph"
-input_message = HumanMessage(content="Research & tell me about AI, which AI skills are demanding right now")
-response = graph.invoke({"messages" : [input_message] })
-print(f'REsponse: {response}')
